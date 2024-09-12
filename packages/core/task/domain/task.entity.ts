@@ -15,5 +15,12 @@ export class TaskEntity extends BaseEntity implements z.infer<typeof TaskEntityS
 
     return fromPlainToClass(parsedPlain, TaskEntity)
   }
+
+  toPlain() {
+    return TaskEntitySchema.parse(Object.keys(this).reduce((acc, key) => {
+      acc[key] = this[key as keyof typeof this]
+      return acc
+    }, {} as Record<string, any>))
+  }
 }
 

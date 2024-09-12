@@ -26,6 +26,13 @@ export function fromPlainToClass<T>(plain: any, EntityConstructor: ClassConstruc
   return entity
 }
 
+export function fromClassToPlain<TBaseEntity extends BaseEntity, TSchema extends ZodTypeAny>(cls: TBaseEntity, schema: TSchema) {
+  return schema.parse(Object.keys(cls).reduce((acc, key) => {
+    acc[key] = cls[key as keyof typeof cls]
+    return acc
+  }, {} as Record<string, any>))
+}
+
 export function toResponseDto<TBaseEntity extends BaseEntity, TSchema extends ZodTypeAny>(cls: TBaseEntity, schema: TSchema) {
   const attributes = Object.keys(cls).reduce((acc, key) => {
     acc[snakeCase(key)] = get(cls, key)

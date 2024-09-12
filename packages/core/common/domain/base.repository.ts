@@ -8,7 +8,7 @@ export interface Paginated<TBaseEntity extends BaseEntity> {
 
 export interface BaseRepository<TBaseEntity extends BaseEntity> {
   findOne(id: TBaseEntity['id']): Promise<TBaseEntity | undefined>
-  findAllPaginated(): Promise<Paginated<TBaseEntity>>
+  findAllPaginated(options: Omit<Paginated<never>, 'data'>): Promise<Paginated<TBaseEntity>>
   remove(id: TBaseEntity['id']): Promise<void>
   insert(entity: TBaseEntity): Promise<TBaseEntity>
 }
