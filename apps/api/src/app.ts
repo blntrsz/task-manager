@@ -1,6 +1,6 @@
 import { swaggerUI } from "@hono/swagger-ui"
 import { OpenAPIHono } from "@hono/zod-openapi"
-import { getOneTask } from "./routers/task.get-one"
+import { getOneTaskRoute } from "./routers/task.get-one"
 
 const OPENAPI_ROUTE = '/openapi'
 
@@ -15,5 +15,8 @@ app
     },
   })
   .get('/swagger', swaggerUI({ url: OPENAPI_ROUTE }))
-  .route("/", getOneTask)
 
+const routes = app
+  .route("/", getOneTaskRoute)
+
+export type AppType = typeof routes

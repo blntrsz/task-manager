@@ -4,8 +4,9 @@ import { DrizzleTaskRepository } from '@task-manager/core/task/infrastructure/dr
 import { db } from '@task-manager/core/common/infrastructure/db'
 import { toResponseDto } from "@task-manager/core/common/domain/entity";
 import { TaskResponseDto } from "./task.dto";
+import { notFoundError, notFoundErrorSchema } from "../responses/not-found.response";
 
-export const getOneTask = new OpenAPIHono().openapi(
+export const getOneTaskRoute = new OpenAPIHono().openapi(
   createRoute({
     path: '/tasks/{id}',
     method: "get",
@@ -19,9 +20,7 @@ export const getOneTask = new OpenAPIHono().openapi(
         description: 'Not found',
         content: {
           "application/json": {
-            schema: z.object({
-              message: z.string()
-            })
+            schema: notFoundErrorSchema
           }
         }
       },
@@ -41,13 +40,9 @@ export const getOneTask = new OpenAPIHono().openapi(
       taskRepository: new DrizzleTaskRepository(db)
     })
 
-    const result = await useCase.execute({
-      id: param.id
-    })
+    const result = await useCase.execute(param)
 
-    if (!result) return c.json({
-      message: 'Not Found'
-    }, 404)
+    if (!result) return c.json(notFoundError, 404)
 
     return c.json(toResponseDto(result, TaskResponseDto), 200)
   }
