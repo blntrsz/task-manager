@@ -1,21 +1,26 @@
 {
-  "name": "@task-manager/api",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "build": "echo build",
-    "dev": "tsx watch src/index.ts"
-  },
-  "dependencies": {
-    "@task-manager/core": "workspace:*",
-    "hono": "^4.6.1",
-    "@hono/zod-openapi": "^0.16.0",
-    "@hono/swagger-ui": "^0.4.1",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "@hono/node-server": "^1.12.2",
-    "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
-  }
+	"name": "@task-manager/api",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "echo build",
+		"dev": "tsx watch src/index.ts",
+		"biome": "biome check .",
+		"biome:fix": "biome check --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@task-manager/core": "workspace:*",
+		"hono": "^4.6.1",
+		"@hono/zod-openapi": "^0.16.0",
+		"@hono/swagger-ui": "^0.4.1",
+		"zod": "^3.23.8",
+		"@biomejs/biome": "~1.9.0",
+		"typescript": "^5.5.3"
+	},
+	"devDependencies": {
+		"@hono/node-server": "^1.12.2",
+		"@types/node": "^20.11.17",
+		"tsx": "^4.7.1"
+	}
 }

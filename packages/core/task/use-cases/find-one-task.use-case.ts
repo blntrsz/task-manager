@@ -1,17 +1,17 @@
-import type { TaskRepository } from "../domain/task.repository.js"
+import type { TaskRepository } from "../domain/task.repository.js";
 
 type Dependencies = {
-  taskRepository: TaskRepository
-}
+	taskRepository: TaskRepository;
+};
 
 type Props = {
-  id: string
-}
+	id: string;
+};
 
 export class FindOneTaskUseCase {
-  constructor(private readonly deps: Dependencies) { }
+	constructor(private readonly deps: Dependencies) {}
 
-  execute(props: Props) {
-    return this.deps.taskRepository.findOne(props.id)
-  }
+	execute(props: Props) {
+		return this.deps.taskRepository.findOne(props.id);
+	}
 }

@@ -3,6 +3,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
   "packages": [
     {
+      "name": "@biomejs/biome",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@electric-sql/pglite",
       "allowedCategories": [ "production" ]
     },

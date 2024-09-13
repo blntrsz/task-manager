@@ -11,6 +11,24 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "commandKind": "bulk",
+      "summary": "Run Typescript typecheck repo wide",
+      "name": "typecheck",
+      "enableParallelism": true,
+    },
+    {
+      "commandKind": "bulk",
+      "summary": "Run Biome check repo wide",
+      "name": "biome",
+      "enableParallelism": true,
+    },
+    {
+      "commandKind": "bulk",
+      "summary": "Run Biome check fix repo wide",
+      "name": "biome:fix",
+      "enableParallelism": true,
+    },
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
